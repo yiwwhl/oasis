@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@stackblitz/sdk':
-    specifier: github:stackblitz/sdk
-    version: github.com/stackblitz/sdk/6d73e9ab06f5254fb59a8d8a77ffe7a674ba9585
+    specifier: ^1.9.0
+    version: 1.9.0
   vue:
     specifier: ^3.3.4
     version: 3.3.11
@@ -826,6 +826,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@stackblitz/sdk@1.9.0:
+    resolution: {integrity: sha512-3m6C7f8pnR5KXys/Hqx2x6ylnpqOak6HtnZI6T5keEO0yT+E4Spkw37VEbdwuC+2oxmjdgq6YZEgiKX7hM1GmQ==}
+    dev: false
 
   /@types/hast@3.0.3:
     resolution: {integrity: sha512-2fYGlaDy/qyLlhidX42wAH0KBi2TCjKMH8CHmBXgRlJ3Y+OXTiqsPQ6IWarZKwF1JoUcAJdPogv1d4b0COTpmQ==}
@@ -1869,9 +1873,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
-
-  github.com/stackblitz/sdk/6d73e9ab06f5254fb59a8d8a77ffe7a674ba9585:
-    resolution: {tarball: https://codeload.github.com/stackblitz/sdk/tar.gz/6d73e9ab06f5254fb59a8d8a77ffe7a674ba9585}
-    name: '@stackblitz/sdk'
-    version: 1.9.0
-    dev: false

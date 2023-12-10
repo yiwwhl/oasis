@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 // happy path：先不考虑其他的 nav 对应的 sidebar 的实现，因为暂时也没有那么多内容
 export default defineConfig({
-  base: "oasis",
+  base: "/oasis/",
   title: "Oasis",
   description: "Document Oasis",
   themeConfig: {

@@ -1,0 +1,1 @@
+import{_ as e,o as a,c as t,R as r}from"./chunks/framework.6J6PoTJf.js";const f=JSON.parse('{"title":"Oasis","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),o={name:"README.md"},s=r("",4),i=[s];function n(c,d,_,l,p,h){return a(),t("div",null,i)}const u=e(o,[["render",n]]);export{f as __pageData,u as default};

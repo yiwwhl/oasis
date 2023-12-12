@@ -22,6 +22,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Harbor Design", link: "docs/harbor-design/index" },
+      { text: "About", link: "docs/about/index" },
     ],
     sidebar: [
       {
@@ -48,5 +49,9 @@ export default defineConfig({
       },
     ],
     socialLinks: [{ icon: "github", link: "https://github.com/yiwwhl" }],
+    footer: {
+      message: "Oasis of knowledge",
+      copyright: "Copyright © 2023-present yiwwhl",
+    },
   },
 });

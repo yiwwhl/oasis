@@ -1,4 +1,4 @@
-// node_modules/.pnpm/github.com+stackblitz+sdk@6d73e9ab06f5254fb59a8d8a77ffe7a674ba9585/node_modules/@stackblitz/sdk/bundles/sdk.m.js
+// node_modules/.pnpm/@stackblitz+sdk@1.9.0/node_modules/@stackblitz/sdk/bundles/sdk.m.js
 var CONNECT_INTERVAL = 500;
 var CONNECT_MAX_ATTEMPTS = 20;
 var DEFAULT_FRAME_HEIGHT = 300;

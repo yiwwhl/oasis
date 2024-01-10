@@ -21,33 +21,50 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: "Home", link: "/" },
-      { text: "Harbor Design", link: "docs/harbor-design/index" },
-      { text: "About", link: "docs/about/index" },
+      { text: "Harbor Design", link: "/docs/harbor-design/" },
+      { text: "About", link: "/docs/about/" },
     ],
-    sidebar: [
-      {
-        text: "ProForm",
-        items: [
-          {
-            text: "快速上手",
-            items: [
-              {
-                text: "简介",
-                link: "/docs/harbor-design/pro-form/get-started/introduction",
-              },
-              {
-                text: "安装",
-                link: "/docs/harbor-design/pro-form/get-started/install",
-              },
-              {
-                text: "Stackblitz 在线体验",
-                link: "/docs/harbor-design/pro-form/get-started/online-playground",
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    sidebar: {
+      "/docs/harbor-design/": [
+        {
+          text: "Harbor Design",
+          items: [
+            {
+              text: "ProForm",
+              items: [
+                {
+                  text: "简介",
+                  items: [
+                    {
+                      text: "什么是 ProForm",
+                      link: "/docs/harbor-design/pro-form/introduction/what",
+                    },
+                    {
+                      text: "快速上手",
+                      link: "/docs/harbor-design/pro-form/introduction/get-started",
+                    },
+
+                    {
+                      text: "Stackblitz 在线体验",
+                      link: "/docs/harbor-design/pro-form/introduction/online-playground",
+                    },
+                  ],
+                },
+                {
+                  text: "功能概览",
+                  items: [
+                    {
+                      text: "useForm",
+                      link: "/docs/harbor-design/pro-form/feature-overview/useForm/index",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
     socialLinks: [{ icon: "github", link: "https://github.com/yiwwhl" }],
     footer: {
       message: "Oasis of knowledge",

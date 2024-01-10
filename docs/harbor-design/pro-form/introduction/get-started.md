@@ -73,7 +73,7 @@ export default defineComponent({
 
 ```ts
 import { defineComponent } from "vue";
-import { ProForm, useForm } from "@harbor-design/arco-design-vue";
+import { ProForm, useForm } from "@harbor-design/proform";
 import { Input } from "@arco-design/web-vue";
 
 export default defineComponent({

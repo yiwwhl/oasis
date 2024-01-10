@@ -6,4 +6,4 @@ layout: home
 import Member from "@/components/about/member/index"
 </script>
 
-<Member  />
+<Member />

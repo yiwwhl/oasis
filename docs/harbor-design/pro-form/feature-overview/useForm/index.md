@@ -1,7 +1,7 @@
 # useForm 函数
 
 ::: tip useForm
-该函数用于初始化基本的 form 配置，形如 [setup,「Operations」]，「Operations」是一系列封装好的功能操作合集
+该函数用于初始化基本的 form 配置，其返回值形如 [setup,「Operations」]，「Operations」是一系列封装好的功能操作合集
 :::
 
 ## 返回值介绍

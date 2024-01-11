@@ -93,7 +93,7 @@ export default defineComponent({
 ```
 
 该示例将渲染一个指定 UI 库的 Input 组件（当前示例为 Arco）如下图
-![MVP](./mvp.png)
+![MVP](./assets/mvp.png)
 
 ## 技术细节
 

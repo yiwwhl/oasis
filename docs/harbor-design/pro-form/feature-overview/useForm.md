@@ -66,4 +66,4 @@ render() {
 
 使用上述示例后，将得到下图的渲染效果，即通过 share 共享了 schema 中使用的 label，通过 hydrate 的方式向表单数据的 name 字段注入 Harbor Design
 
-![showCase1](./showCase1.png)
+![showCase1](./assets/showCase1.png)

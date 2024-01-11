@@ -41,7 +41,7 @@ export default defineConfig({
                     },
                     {
                       text: "快速上手",
-                      link: "/docs/harbor-design/pro-form/introduction/get-started",
+                      link: "/docs/harbor-design/pro-form/introduction/get-started/index",
                     },
 
                     {

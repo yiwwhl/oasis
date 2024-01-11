@@ -72,9 +72,90 @@ render() {
 
 ### ui
 
+ui 这个概念比较宽泛，其主要作用是选定一个预设的渲染模式，这也是表单逻辑和 UI 设计独立的体现
+
+目前 ProForm 内置了三种 UI 库的接口，分别是 `ArcoDesign` `NaiveUI` `NutUI` 即用户在实现这三种 UI 框架进行项目开发时无需额外的接口实现，当然这个后续可以随着迭代增加或者是由用户自己提供在入口处
+
+假如你的项目中表单根据业务场景进行了不同样式的设计，表单渲染和业务样式之间形成了多对一的关系后，我们可以在入口处提供多套预设，在具体使用时通过 `ui` 指定需要的预设进行渲染即可
+
+如下例中的 `UIA` 和 `UIB`，他们二者的渲染核心均使用 ArcoVue，但他们的容器可以存在差异，native 也可以存在差异，这样对于同一个项目的同一个 UI 框架，就可以默认预设多套表单样式，并在使用时通过指定具体的 ui 来决定使用何种 UI 预设
+
+```tsx
+UIA: {
+  extend: "ArcoVue",
+  container: {
+    Form: FormA,
+    FormItem: FormItemA,
+    Item: ItemA,
+    Group: GroupA,
+    List: ListA,
+    ListItem: ListItemA,
+  },
+},
+UIB: {
+  extend: "ArcoVue",
+  container: {
+    Form: FormB,
+    FormItem: FormItemB,
+    Item: ItemB,
+    Group: GroupB,
+    List: ListB,
+    ListItem: ListItemB,
+  },
+},
+
+// 使用时
+const [setup, { submit }] = useForm({
+  ui: "UIA",
+  schemas,
+});
+```
+
 ### grid
 
+grid 用于布局相关的设置，其具体的使用还有待优化，但目前主要的玩法还是和原生的 grid 类似
+
 ### native
+
+native 用于配置组件库的 Form 与 FormItem 的属性
+
+譬如对于 ArcoDesign 来说，Form 可以设置 layout 属性以配置基本的表格布局方式，如下例
+
+```tsx {2-8}
+useForm({
+  native: {
+    props: {
+      Form: {
+        layout: "vertical",
+      },
+    },
+  },
+});
+```
+
+这会对当前整个表单实例生效，同样的，我们也可以在具体的 schema 配置项里去配置局部生效的 native，例如
+
+::: danger 但需要注意的是，局部对 Form 的操作会覆盖全局，但对 FormItem 的操作不会，这也是符合预期的
+:::
+
+```tsx {7-13}
+useForm({
+  schemas: [
+    {
+      label: "姓名",
+      field: "name",
+      component: Input,
+      native: {
+        props: {
+          Form: {
+            layout: "vertical",
+          },
+        },
+      },
+    },
+  ],
+});
+```
 
 ### runtime
 

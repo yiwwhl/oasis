@@ -219,4 +219,73 @@ customizeListItemLabel(rawLabel, rawIndex) {
 
 :::
 
-### schemas
+### schemas 与一些特殊 mark 函数的介绍
+
+schemas 是 ProForm 中相当重要的一环，开发者通过定义简洁的 `schema` 来快速创建一个表单业务，并无需关心具体的数据绑定逻辑和繁复的处理细节，有利于提升开发效率并降低出错概率
+
+由于 schema 中的定义较多且细碎，我会整体挪到下一篇文章中描述，在这里主要是再谈一下关于 `schema` 设计的初心
+
+对于前端常见的业务数据处理场景来说，交互形式一般有三种：
+
+```ts
+- 目标值
+- (...args: any[]) => 目标值
+- (...args: any[]) => Promise<目标值>
+```
+
+我在设计 `schema` 配置逻辑的时候，在底层代码做了大量的支持，理论上除了一些逻辑上明确不需要深度处理的数据例如 `component` `native` ... 等，其余的数据都做了深层处理的考虑，换言之，对一个 `schema` 项的配置可以有三种形式，以对 `label` 的配置而言
+
+```ts
+- label: "姓名",
+- label: ({ model }) => "姓名" + model.xxx // 一旦使用了 model 等数据，label 值会根据 model 的变化而变化
+- label: ({ model }) => new Promise((resolve) => resolve("姓名")) // 可以通过一个异步函数的结果动态配置 label
+```
+
+这样动态的能力可以避免项目中出现大量的 `if-else` 逻辑，也减少了维护上的成本，并提升了 `schema` 的可玩性，同理，你也可以对 `field` `component` `componentProps` ... 等字段使用类似的玩法
+
+但这样的灵活性也带来一些问题，于是就有了一些 `mark` 函数，目前提供了两个
+
+- markNativeFunction
+- markNativeObject
+
+由于上述特性，系统在底层除了少数白名单性质的属性外，是会无限处理下去，直至结果“稳定”的，这样的操作既提供了一种便利，也带来了一些麻烦，比较易于理解的就是对于我们的一些事件监听函数来说，我们希望它在事件真实触发的时机执行，而不是在`计算 schema `时就处理掉，这时候我们需要明确它是一个无需被深度处理的函数，例如
+
+```ts
+{
+  label: "性别",
+  field: "gender"
+  component: Select,
+  componentProps: {
+    options: () => [
+      {
+        label: "男",
+        value: "male"
+      },
+      {
+        label: "女",
+        value: "female"
+      }
+    ]
+    onSelect: markNativeFunction(() => {
+      // do something when select
+    })
+  }
+}
+```
+
+上述例子我们通过 `markNativeFunction` 将 select 函数保留，这样它就可以在 Select 组件 emit 一个 select 事件时正确的触发该函数，但对于 options 来说，我们并未使用 `markNativeFunction` 将其包裹，在计算时它将被计算成函数的结果，也即是一个数组用于 options 的渲染
+
+同理，系统里除了对函数进行了深层的处理外，对 `object` 也做了深度的处理，本质上是由于 object 中也存在 value 是函数的情况，想要保持足够的灵活性，就需要无限深度的嗅探，但这也带来一些问题，当我们的系统中存在了一个不需要处理的 object 时，`markNativeObject` 就派上了用场，用法如下
+
+```ts
+{
+  label: "照片",
+  field: "images"
+  component: Uploader,
+  componentProps: {
+    ...markNativeObject(「无需继续处理的对象」)
+  }
+}
+```
+
+通过这样的形式你可以确保你的一些通用配置是可以抽象出去，并且不用担心被系统给深度处理掉

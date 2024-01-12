@@ -57,6 +57,10 @@ export default defineConfig({
                       text: "useForm",
                       link: "/docs/harbor-design/pro-form/feature-overview/useForm",
                     },
+                    {
+                      text: "schemas",
+                      link: "/docs/harbor-design/pro-form/feature-overview/schemas",
+                    },
                   ],
                 },
               ],
